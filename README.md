@@ -122,15 +122,27 @@ npm install --save mongodb@2
 npm install --save monk
 ```
 
-## 7 Python / Pandas / PyMongo
+## 7 Python (Anaconda!) / Pandas / PyMongo
 
 https://www.python.org/ and install python v3.
-Install these Python modules using Pip (similiar to Javascript's npm):
+Even better use Anaconda 3 to install Python 3, and Jupyter notebooks and soms required modules
+like Werkzeug which you need.
+
+Install these Python modules using Pip afterwards (similiar to Javascript's npm):
 ```
 python -m pip install pymongo
 python -m pip install numpy
 python -m pip install pandas
 ```
+
+## 8 (OPTIONAL) : Python as backend , no nodejs
+
+Switch to python subdir and install json-rpc module with Python Pip, example on WIndows
+If you don't use Anaconda's Python you have to install Werkzeug using Pip also.
+```
+pip install json-rpc
+```
+
 # Building and testing the app
 
 ## 1 Start MongoDB as described and the connection using RoboMongo.
@@ -180,6 +192,27 @@ Windows: type css\components\* css\* > bundle.css
 
 Open index.html from the File Explorer , using Chrome browser. As some browers don't allow accessing it using the defaults like Edge. (TODO: Check this)
 Also TODO , serve the frontend using the backend server so it can be used from a server.
+
+## 6 Optional run using Python backend:
+
+Start Python Werkzueg backend (Flask workhorse):
+```
+cd C:\Users\Gebruiker\Documents\github\pandaweb\python
+python DataService.py
+```
+
+Test using another terminal session:
+```
+python DataClient.py
+```
+
+It will return a string  "myquery" we send to our search_text backend function:
+```
+response is:{'jsonrpc': '2.0', 'id': 0, 'result': '{message: myquery }'}
+result is:{message: myquery }
+```
+
+TODO: Let this Python backend use our MongoDB backend, and callable from our React Frontend
 
 # To build a productions version:
 
