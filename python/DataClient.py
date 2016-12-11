@@ -4,10 +4,10 @@ import requests
 import json
 
 my_server = "localhost"
-my_port = 8080
-
+my_port = 3001 #port to backend
+my_path = "/data" #path to backend
 def main():
-    url = "http://" + str(my_server) + ":" + str(my_port) + "/data"
+    url = "http://" + str(my_server) + ":" + str(my_port) + my_path
     headers = {'content-type': 'application/json'}
 
     # Example echo method
