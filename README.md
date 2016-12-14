@@ -1,4 +1,5 @@
 Notice: Work in progress
+To read: https://apihandyman.io/do-you-really-know-why-you-prefer-rest-over-rpc/
 
 # Goal PandaWeb.
 This repository tries to kickstart Data Scientists and Data Engineers in getting a working webapp.
@@ -34,8 +35,8 @@ The Frontend Javascript library we'll be using is ReactJS. Babel will be used to
 A prebuild ReactJS table component we will use to put in our data. Notice it can't support multiheader tables, but works relatively simple.
 5. fetch
 Used to make Ajax based calls from our ReactJS frontend to the backend. We will use it to get the data from our NodeJS backend Api.
-6. Mongodb MONK
-Connector for NodeJS backend to connect to MongoDB and read the data we stored in the database.
+6. Mongo for NodeJS
+To connect our backend API Layer (Nodejs) to our database Mongo
 7. Python / Pandas / PyMongo
 Our initial script will create a Panda dataframe using some dummy data having several datatypes. It will also insert it into MongoDB
 
@@ -53,7 +54,7 @@ Afterwards make sure you cd into the clonded PandaWeb directory.
 Go to http://nodejs.org and install NodeJS for you OS (this will also install npm , make sure it's in your PATH)
 ```
 npm install --save express
-npm install --save body-parser
+#npm install --save body-parser
 npm install --save cors
 ```
 
@@ -115,11 +116,11 @@ npm install griddle-react --save
 npm install react-fetch
 ```
 
-## 6 MongoDB and MONK for NodeJS
+## 6 MongoDB for NodeJS
 
 ```
 npm install --save mongodb@2
-npm install --save monk
+#npm install --save monk
 ```
 
 ## 7 Python (Anaconda!) / Pandas / PyMongo
@@ -135,13 +136,7 @@ python -m pip install numpy
 python -m pip install pandas
 ```
 
-## 8 (OPTIONAL) : Python as backend , no nodejs
 
-Switch to python subdir and install json-rpc module with Python Pip, example on WIndows
-If you don't use Anaconda's Python you have to install Werkzeug using Pip also.
-```
-pip install json-rpc
-```
 
 # Building and testing the app
 
@@ -175,7 +170,11 @@ Start the backend API and test it using curl:
 ```
 cd nodejs
 node DataService.js
-curl --header "Accept:application/json" http://localhost:8080/data
+
+//Test url using these command line statements:
+curl -i -X GET http://localhost:3000/pandaweb/all
+curl -i -X GET http://localhost:3000/pandaweb/range/1/10
+curl -i -X DELETE http://localhost:3000/pandaweb/delete/<some id like 5845cb0f8f9bfe03f813ba0c>
 ```
 This should give you JSON with a message and some data
 
@@ -192,27 +191,6 @@ Windows: type css\components\* css\* > bundle.css
 
 Open index.html from the File Explorer , using Chrome browser. As some browers don't allow accessing it using the defaults like Edge. (TODO: Check this)
 Also TODO , serve the frontend using the backend server so it can be used from a server.
-
-## 6 Optional run using Python backend:
-
-Start Python Werkzueg backend (Flask workhorse):
-```
-cd C:\Users\Gebruiker\Documents\github\pandaweb\python
-python DataService.py
-```
-
-Test using another terminal session:
-```
-python DataClient.py
-```
-
-It will return a string  "myquery" we send to our search_text backend function:
-```
-response is:{'jsonrpc': '2.0', 'id': 0, 'result': '{message: myquery }'}
-result is:{message: myquery }
-```
-
-TODO: Let this Python backend use our MongoDB backend, and callable from our React Frontend
 
 # To build a productions version:
 

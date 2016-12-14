@@ -25,11 +25,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-//var React = require('react');
-
-
-//var Griddle = require('griddle-react');
-
 
 var PandaWeb = function (_React$Component) {
   _inherits(PandaWeb, _React$Component);
@@ -64,11 +59,12 @@ var PandaWeb = function (_React$Component) {
         method: 'get'
       }).then(function (response) {
 
+        // Call add function on the server
         var contentType = response.headers.get("content-type");
         if (contentType && contentType.indexOf("application/json") !== -1) {
           response.json().then(function (json) {
-            console.log("OK we got json");
-            obj.setData(json.message, json.datatable);
+            console.log("OK we got json ");
+            obj.setData("Real data from API", json);
           });
         } else {
           console.log("Oops, we haven't got JSON!");
@@ -97,7 +93,6 @@ PandaWeb.propTypes = {
 };
 
 PandaWeb.defaultProps = {
-  url: "http://localhost:8080/data"
+  url: "http://localhost:3000/pandaweb/range/5/10" //"http://localhost:3000/pandaweb/all"
 };
-
 exports.default = PandaWeb;

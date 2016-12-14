@@ -1,39 +1,16 @@
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/pandawebdb');
+var express = require('express'),
+    pandaweb = require('./routes/pandawebdb'),
+     cors = require('cors');
 
-Server = require("jsonrpc-node").HTTP.Server;
+var app = express();
+app.use(cors({origin: 'null'})); //If you use the frontend without any port on local pc just use null, use * to allow all
 
-var server = new Server({
-      echo:function(args, reply){
-         console.log("lets echo " + args)
-         return reply(args);
-       },
-       search_text:function(args, reply){
-         var collection = db.get('pandawebcol');
-          result = "No results founds"
-          collection.find({}).then((docs) => {
-              result = { message: 'Real data from mongodb!', datatable: docs };
-              return reply(result);
-          })
-        }
-      });
+app.get('/pandaweb/all', pandaweb.findAll)
+app.get('/pandaweb/range/:from/:to', pandaweb.findByRange);
+//app.get('/pandaweb/:id', pandaweb.findById);
+//app.post('/pandaweb', pandaweb.add;
+//app.put('/pandaweb/:id', pandaweb.update);
+app.delete('/pandaweb/delete/:id', pandaweb.delete);
 
-var express    = require('express');        // call express
-var app        = express();                 // define our app using express
-
-var backport = 3001
-var frontport = 3000 //process.env.PORT || 3001;        // set our port
-var router = express.Router();              // get an instance of the express Router
-
-// more routes for our API will happen here
-app.use("/app", function (req, res, next) {
-  res.send('This is your frontend ');
-});
-app.use("/data", server); //use the jsonrpc
-
-server.listen(backport, "localhost");
-app.listen(frontport, "localhost");
-
-console.log('Opening PandaWeb backend on port ' + backport);
-console.log('Opening PandaWeb frontend on port ' + frontport);
+app.listen(3000);
+console.log('Listening on port 3000...');

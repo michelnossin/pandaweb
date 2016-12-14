@@ -1,9 +1,6 @@
 import React from 'react';
 import Fetch from 'react-fetch'
-//var React = require('react');
 import Griddle from 'griddle-react';
-//var Griddle = require('griddle-react');
-
 
 class PandaWeb extends React.Component {
   constructor(props) {
@@ -22,7 +19,6 @@ class PandaWeb extends React.Component {
      }
    }
 
-
   render() {
      var obj = this
 
@@ -30,23 +26,22 @@ class PandaWeb extends React.Component {
     	method: 'get'
     }).then(function(response) {
 
+    // Call add function on the server
       var contentType = response.headers.get("content-type");
         if(contentType && contentType.indexOf("application/json") !== -1) {
           response.json().then(function(json) {
-            console.log("OK we got json");
-            obj.setData(json.message,json.datatable)
+            console.log("OK we got json " );
+            obj.setData("Real data from API",json)
 
           });
         } else {
           console.log("Oops, we haven't got JSON!");
           obj.setData("Backend show no json",[])
         }
-
     }).catch(function(err) {
       console.log("Error , no API BACKEND");
       console.log(err);
       obj.setData("Backend not running",[])
-
     });
 
     return (
@@ -60,7 +55,6 @@ PandaWeb.propTypes = {
 };
 
 PandaWeb.defaultProps = {
-    url: "http://localhost:8080/data",
+    url: "http://localhost:3000/pandaweb/range/5/10" //"http://localhost:3000/pandaweb/all"
 };
-
 export default PandaWeb;
