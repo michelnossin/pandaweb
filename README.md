@@ -6,31 +6,38 @@ This repository tries to kickstart Data Scientists and Data Engineers in getting
 So basically connecting the data-based world with the web world.
 
 # Scope.
-We will assume some Python based code has been written using the Pandas library.
-For the web-app we will initially use the MERN stack (MongoDB/Express/ReactJS/NodeJS) and keep the sample simple. Mern is similiar to the MEAN stack but replaces AngularJS with ReactJs as the frontend library. At this moment the sample code can be tested on a local pc, as the html files are not yet provided by the NodeJS backend. In a later stage we will do this and also show how to use a Python backend using only WerkZeug (the workhorse for Python Flask).
+We will assume some Python based code has been written using the Pandas library and a working webbased MVP is to be created.
+For the web-app we will initially use the MERN stack (MongoDB/Express/ReactJS/NodeJS) and keep the sample simple. Mern is similiar to the MEAN stack but replaces AngularJS with ReactJs as the frontend library. It will use the new ES2015 (ES6) Javascript notation.
+
+At this moment there are 2 todo's in progress:
+```
+1. At the moment of writing a backend using Python (Flask) will also be written. The reason for this is that Python models build by data scientists tend to use views (=code) on top of data. Therefor just connecting to a sql or nosql database to get data and show it will not be enough. A full Javascript stack is less likely to be used because of this. Unless the Python based model using Panda can be rewritten in Nodejs, which is probably not the case.
+
+2. Also one note, many prebuild ReactJS components tend to assume all data will be send to the client in 1 shot. This makes a very convinient component but in real life the data will be way too big. So this means the components should be rewritten to make Ajax based call which will transport partial data.
+```
 
 # Directory overview:
 
-1. nodejs: Used by our api backend, single javascript file which acts as our HTTP server
-2. python: Hosts ourPython script filling our MongoDB with some sample data using a Panda Dataframe
-3. Css/images/javascript : All required directories for our React frontend. Css is for the styling, images for static images, and javascript for our main React component Css and js both have a app.* file for the main application, and subdirectories per component wich will be unified during each build proces (into build.css and build.js). These build files are used within our main index.html file
+1. nodejs: Used by our api backend, single javascript file which acts as our HTTP server. It will host our Rest API backend and the frontend files.
+2. python: Hosts our Python script initially filling our MongoDB with some sample data using a Panda Dataframe
+3. Css/images/javascript : All required directories for our React frontend. Css is for the styling, images for static images, and javascript for our main React component . Css and js both have a app.* file for the main application, and subdirectories per component wich will be unified during each build proces (into build.css and build.js). These build files are used within our main index.html file
 
 # Seperate files overview:
 
 1. index.html: the main starting point for our app
 2. .gitignore: to prevent node_modules being uploaded to github
-3. build.* : Bundled css and javascript files.
+3. build.* : Bundled css and javascript files. These files will be created by the build proces.
 
 # Installation Overview
 
 0. Install your Git client and clone this project
 1. NodeJS and Express Backend API
-NodeJS is a javascript backend in our cased used as API provider. It will respond to AJAX based calls from our frontend ReactJs component.
-We'll be using it in combination with the Express module enabling us act as a HTTP server and does the routing.
+NodeJS is a javascript backend in our cased used as Rest API provider. It will respond to AJAX based calls from our frontend ReactJs component.
+We'll be using it in combination with the Express module enabling us act as a HTTP server and enabling the routing.
 2. MongoDB and RoboMongo
-The backend NOSQL database which we will fill with some data. RoboMongo is a tool to check the connection and data using a GUI.
+The backend NOSQL database which we will fill with some data using a Python script. RoboMongo is a tool to check the connection and data using a GUI.
 3. ReactJs and Babel (and browserify)
-The Frontend Javascript library we'll be using is ReactJS. Babel will be used to read our JSX/Es6/es2015 javascript  files and generate javascript files usable by any older browser. JSX is a combination of javascript and XML style notation making the code much clearer compared to nested javascript code. browserify is used to follow all dependencies of a entry javascript file and put all required code in a bundled file.
+The Frontend Javascript library we'll be using is ReactJS. Babel will be used to read our JSX/Es6/es2015 javascript  files and generate javascript files usable by any browser. JSX is a combination of javascript and XML style notation making the code much clearer compared to nested javascript code. browserify is used to follow all dependencies of our entry javascript file and output of required code is put in a bundled file during the build.
 4. griddle-react
 A prebuild ReactJS table component we will use to put in our data. Notice it can't support multiheader tables, but works relatively simple.
 5. fetch
@@ -69,7 +76,7 @@ tar -xvf node-v6.9.1-linux-x64.tar.xz
 ```
 ## 2 MongoDB
 
-install mongo , goto https://www.mongodb.com/ and install using the instructions.
+install mongo using default settings, goto https://www.mongodb.com/ and install using the instructions.
 As a bonus we will describe how to install on Linux AWS if you use AWS.
 
 ### To install on amazon linux:
@@ -189,8 +196,7 @@ Windows: type css\components\* css\* > bundle.css
 ```
 ## 5 Test application:
 
-Open index.html from the File Explorer , using Chrome browser. As some browers don't allow accessing it using the defaults like Edge. (TODO: Check this)
-Also TODO , serve the frontend using the backend server so it can be used from a server.
+The http://localhost:3000 url will show our fantastic application.
 
 # To build a productions version:
 
