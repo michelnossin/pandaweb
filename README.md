@@ -52,6 +52,7 @@ Used to make Ajax based calls from our ReactJS frontend to the backend. We will 
 To connect our backend API Layer (Nodejs) to our database Mongo
 7. Python / Pandas / PyMongo
 Our initial script will create a Panda dataframe using some dummy data having several datatypes. It will also insert it into MongoDB
+Also we have a Python data API backend DataService.py if we dont want to use NodeJS. A utility script mongo_util.py will help use connect to MongoDB.
 
 # LETS INSTALL
 
