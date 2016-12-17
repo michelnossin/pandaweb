@@ -11,9 +11,15 @@ For the web-app we will initially use the MERN stack (MongoDB/Express/ReactJS/No
 
 At this moment there are 2 todo's in progress:
 ```
-1. At the moment of writing a backend using Python (Flask) will also be written. The reason for this is that Python models build by data scientists tend to use views (=code) on top of data. Therefor just connecting to a sql or nosql database to get data and show it will not be enough. A full Javascript stack is less likely to be used because of this. Unless the Python based model using Panda can be rewritten in Nodejs, which is probably not the case.
+1. At the moment of writing a backend using Python (Flask) will also be written.
+The reason for this is that Python models build by data scientists tend to use views (=code) on top of data.
+Therefor just connecting to a sql or nosql database to get data and show it will not be enough.
+A full Javascript stack is less likely to be used because of this. Unless the Python based model using Panda
+can be rewritten in Nodejs, which is probably not the case.
 
-2. Also one note, many prebuild ReactJS components tend to assume all data will be send to the client in 1 shot. This makes a very convinient component but in real life the data will be way too big. So this means the components should be rewritten to make Ajax based call which will transport partial data.
+2. Also one note, many prebuild ReactJS components tend to assume all data will be send to the client in 1 shot.
+This makes a very convinient component but in real life the data will be way too big. So this means the components
+should be rewritten to make Ajax based call which will transport partial data.
 ```
 
 # Directory overview:
@@ -134,13 +140,15 @@ npm install --save mongodb@2
 
 https://www.python.org/ and install python v3.
 Even better use Anaconda 3 to install Python 3, and Jupyter notebooks and soms required modules
-like Werkzeug which you need.
+like Werkzeug which you need if you use the Python based API backend instead of NodeJS.
 
 Install these Python modules using Pip afterwards (similiar to Javascript's npm):
 ```
 python -m pip install pymongo
 python -m pip install numpy
 python -m pip install pandas
+python -m pip install flask-httpauth
+pip install -U flask-cors
 ```
 
 
@@ -171,19 +179,27 @@ python panda_to_mongo_db.py
 ```
 Use RoboMongo again to see the new data
 
-## 3 Start and test NodeJS
+## 3 Start the backend (NodeJS/Express or Python/Flask)
 
-Start the backend API and test it using curl:
+If using NodeJS: Start the backend API and test it using curl:
 ```
 cd nodejs
 node DataService.js
+```
 
+If you use Python/Flask as backend instead of NodeJs:
+```
+cd python
+python DataService.py
+```
+
+Test the backend first:
+```
 //Test url using these command line statements:
 curl -i -X GET http://localhost:3000/pandaweb/all
 curl -i -X GET http://localhost:3000/pandaweb/range/1/10
 curl -i -X DELETE http://localhost:3000/pandaweb/delete/<some id like 5845cb0f8f9bfe03f813ba0c>
 ```
-This should give you JSON with a message and some data
 
 ## 4 Build a new application
 

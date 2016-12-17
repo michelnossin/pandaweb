@@ -30,7 +30,7 @@ class PandaWeb extends React.Component {
       var contentType = response.headers.get("content-type");
         if(contentType && contentType.indexOf("application/json") !== -1) {
           response.json().then(function(json) {
-            console.log("OK we got json " );
+            console.log("OK we got json: ");
             obj.setData("Real data from API",json)
 
           });
