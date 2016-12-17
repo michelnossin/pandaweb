@@ -203,9 +203,15 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(
     'h1',
     null,
-    'Panda Dataframe'
+    'Panda Dataframe. Show it all:'
   ),
-  _react2.default.createElement(_PandaWeb2.default, null)
+  _react2.default.createElement(_PandaWeb2.default, null),
+  _react2.default.createElement(
+    'h1',
+    null,
+    'Show range:'
+  ),
+  _react2.default.createElement(_PandaWeb2.default, { url: 'http://localhost:3000/pandaweb/range/5/10' })
 ), document.getElementById('app'));
 },{"./components/PandaWeb":3,"react":424,"react-dom":272}],3:[function(require,module,exports){
 'use strict';
@@ -303,7 +309,7 @@ PandaWeb.propTypes = {
 };
 
 PandaWeb.defaultProps = {
-  url: "http://localhost:3000/pandaweb/range/5/10" //"http://localhost:3000/pandaweb/all"
+  url: "http://localhost:3000/pandaweb/all"
 };
 exports.default = PandaWeb;
 },{"griddle-react":40,"react":424,"react-fetch":399}],4:[function(require,module,exports){

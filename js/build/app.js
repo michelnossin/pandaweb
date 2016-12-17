@@ -20,7 +20,13 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(
     'h1',
     null,
-    'Panda Dataframe'
+    'Panda Dataframe. Show it all:'
   ),
-  _react2.default.createElement(_PandaWeb2.default, null)
+  _react2.default.createElement(_PandaWeb2.default, null),
+  _react2.default.createElement(
+    'h1',
+    null,
+    'Show range:'
+  ),
+  _react2.default.createElement(_PandaWeb2.default, { url: 'http://localhost:3000/pandaweb/range/5/10' })
 ), document.getElementById('app'));

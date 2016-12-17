@@ -55,6 +55,6 @@ PandaWeb.propTypes = {
 };
 
 PandaWeb.defaultProps = {
-    url: "http://localhost:3000/pandaweb/range/5/10" //"http://localhost:3000/pandaweb/all"
+    url: "http://localhost:3000/pandaweb/all"
 };
 export default PandaWeb;
